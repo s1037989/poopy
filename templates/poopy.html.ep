@@ -1,0 +1,56 @@
+% $date = Date::Simple->new($date) || Date::Simple::today();
+% my @birthdays = map { Date::Simple->new($_) } '2006-01-09', '2014-05-01';
+% my $prev = $date-42;
+% my $next = $date+42;
+% my @meds = split /,/, $meds;
+% $date-- while $date->day_of_week > 0;
+% my $first = $date;
+% my $line = begin
+  % my $_first = ($date == $first) || ($date->day == 1);
+  <div class="line" style="height: <%= 480/$weeks %>px">
+    <span class="<%= (grep { $_ == $date->day } @meds) ? 'meds' : '' %> <%= $_first ? 'state_month' : '' %> <%= (grep { $_->month == $date->month && $_->day == $date->day } @birthdays) ? 'birthday' : '' %>">
+      <%= $_first ? $date->format('%B %d') : $date->day %>
+    </span>
+    <%= image '/'.($date->month % 2 == 0 ? 'even' : 'odd'), class => 'me' %>
+  </div>
+  % $date++;
+% end
+
+<html>
+  <head>
+    <title>Feeding Poopy</title>
+    %= stylesheet 'https://fonts.googleapis.com/css?family=Baloo+Bhai'
+    %= stylesheet '/css/style.css'
+  </head>
+  <body>
+    <table>
+      <tr>
+        <td style="vertical-align:middle"><%= $date->format('%Y-%m-%d') %><br /><%= image '/IMG_2405.JPG', width => 100 %></td>
+        <td style="vertical-align:middle;text-align:center;width:725px"><span class="title">FEEDING POOPY!</span></td>
+        <td style="vertical-align:middle"><%= image '/IMG_2386.JPG', width => 100 %></td>
+      </tr>
+    </table>
+    <br />
+    <table>
+      <tr>
+        <th>Sunday</th>
+        <th>Monday</th>
+        <th>Tuesday</th>
+        <th>Wednesday</th>
+        <th>Thursday</th>
+        <th>Friday</th>
+        <th>Saturday</th>
+      </tr>
+      % for (1..$weeks) {
+      <tr>
+        % for (1..7) {
+        <td><%= $line->() %></td>
+        % }
+      </tr>
+      % }
+    </table>
+    %= link_to Prev => url_with('poopy', {date => $prev})
+    %= link_to Next => url_with('poopy', {date => $next})
+  </body>
+</html>
+

@@ -1,0 +1,23 @@
+#!/usr/bin/env perl
+use Mojolicious::Lite;
+use Date::Simple qw(:all);
+use GD;
+
+get '/:img' => [img => [qw/even odd/], format => [qw/png/]] => {format => 'png'} => sub {
+  my $c = shift;
+  my %img = (
+    even => [255, 255, 255],
+    odd  => [245, 245, 245],
+  );
+  my $img = new GD::Image(100,100);
+  $img->fill(0,0,$img->colorAllocate(@{$img{$c->param('img')}}));
+  $img->line(0,100,100,0,$img->colorAllocate(0,0,0));
+  my $format = $c->stash('format');
+  $c->respond_to(
+    png => {data => $img->$format}
+  );
+};
+
+get '/:date' => {date => ''} => sub { my $self = shift; $self->render('poopy', date => $self->param('date'), weeks => $self->param('weeks')||6, meds => $self->param('meds')||'15') } => 'poopy';
+
+app->start;

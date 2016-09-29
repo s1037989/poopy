@@ -1,0 +1,73 @@
+* {
+    color: green;
+    font-size: 10px;
+}
+.state_month {
+    font-weight:bold;
+}
+.meds {
+    font-weight:bold;
+    font-size:15px;
+    color: red;
+}
+.birthday {
+    font-weight:bold;
+    font-size:15px;
+    color: blue;
+}
+.title {
+    font-family: 'Baloo Bhai';
+    font-weight:bold;
+    font-size: 72px;
+}
+table {
+    border-width: 0px;
+    border-spacing: ;
+    border-style: outset;
+    border-color: gray;
+    border-collapse: collapse;
+    background-color: transparent;
+}
+table th {
+    border-width: 1px;
+    padding: 1px;
+    border-style: inset;
+    border-color: gray;
+    background-color: transparent;
+    -moz-border-radius: ;
+}
+table td {
+    vertical-align: top;
+//    width: 100px;
+//    height: 100px;
+    border-width: 0px;
+    padding: 0px;
+    border-style: inset;
+    border-color: gray;
+    background-color: transparent;
+    -moz-border-radius: ;
+}
+.crossOut .child{
+    position:absolute;
+    display:block;
+    height:1px;
+    background:black;
+}
+.line {
+    width: 130px;
+    //height: 80px;
+    border: 1px solid #cccccc;
+    margin: 0px;
+    padding: 0px;
+    position: relative;
+}
+
+.me {
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    z-index: -1;
+}
+
