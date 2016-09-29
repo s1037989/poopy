@@ -1,0 +1,161 @@
+#!/usr/bin/env perl
+use Mojolicious::Lite;
+use Date::Simple qw(:all);
+
+get '/:date' => {date => ''} => sub { my $self = shift; $self->render('poopy', date => $self->param('date')) } => 'poopy';
+
+app->start;
+
+__DATA__
+
+@@ poopy.html.ep
+% $date = Date::Simple->new($date) || Date::Simple::today();
+% $date-- while $date->day_of_week > 0;
+% my $c = $date->format('%B ');
+% my $line = begin
+  <div class="line" <%= ($date->day == 1 || $c ? 'style="color:red"' : '') %>><%= ($date->day == 1 ? $date->format('%B ') : '') %><%= $c %><%= $date->day %><img src="/poopy/lol.png" class="me" /></div>
+  % $date++;
+  % $c='';
+% end
+
+<html>
+<head>
+<title>Feeding Poopy</title>
+<style>
+* {
+    font-family: "Comic Sans MS";
+    color: green;
+    font-size: 10px;
+}
+.title {
+    font-weight:bold;
+    font-size: 72px;
+}
+table {
+    border-width: 0px;
+    border-spacing: ;
+    border-style: outset;
+    border-color: gray;
+    border-collapse: collapse;
+    background-color: transparent;
+}
+table th {
+    border-width: 1px;
+    padding: 1px;
+    border-style: inset;
+    border-color: gray;
+    background-color: transparent;
+    -moz-border-radius: ;
+}
+table td {
+    vertical-align: top;
+//    width: 100px;
+//    height: 100px;
+    border-width: 0px;
+    padding: 0px;
+    border-style: inset;
+    border-color: gray;
+    background-color: transparent;
+    -moz-border-radius: ;
+}
+.crossOut .child{
+    position:absolute;
+    display:block;
+    height:1px;
+    background:black;
+}
+.line {
+    width: 130px;
+    height: 80px;
+    border: 1px solid #cccccc;
+    margin: 0px;
+    padding: 0px;
+    position: relative;
+}
+
+.me {
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    z-index: -1;
+}
+</style>
+</head>
+<body>
+<table>
+<tr>
+<td style="vertical-align:middle"><%= $date->format('%Y-%m-%d') %><br /><img src="/IMG_2405.JPG" width=100></td>
+<td style="vertical-align:middle;text-align:center;width:725px"><span class="title">FEEDING POOPY!</span></td>
+<td style="vertical-align:middle"><img src="/IMG_2386.JPG" width=100></td>
+</tr>
+</table>
+<br />
+<table>
+<tr>
+        <th>Sunday</th>
+        <th>Monday</th>
+        <th>Tuesday</th>
+        <th>Wednesday</th>
+        <th>Thursday</th>
+        <th>Friday</th>
+        <th>Saturday</th>
+	</tr>
+	<tr>
+        <td><%= $line->() %></td>
+        <td><%= $line->() %></td>
+        <td><%= $line->() %></td>
+        <td><%= $line->() %></td>
+        <td><%= $line->() %></td>
+        <td><%= $line->() %></td>
+        <td><%= $line->() %></td>
+	</tr>
+	<tr>
+        <td><%= $line->() %></td>
+        <td><%= $line->() %></td>
+        <td><%= $line->() %></td>
+        <td><%= $line->() %></td>
+        <td><%= $line->() %></td>
+        <td><%= $line->() %></td>
+        <td><%= $line->() %></td>
+	</tr>
+	<tr>
+        <td><%= $line->() %></td>
+        <td><%= $line->() %></td>
+        <td><%= $line->() %></td>
+        <td><%= $line->() %></td>
+        <td><%= $line->() %></td>
+        <td><%= $line->() %></td>
+        <td><%= $line->() %></td>
+	</tr>
+	<tr>
+        <td><%= $line->() %></td>
+        <td><%= $line->() %></td>
+        <td><%= $line->() %></td>
+        <td><%= $line->() %></td>
+        <td><%= $line->() %></td>
+        <td><%= $line->() %></td>
+        <td><%= $line->() %></td>
+	</tr>
+	<tr>
+        <td><%= $line->() %></td>
+        <td><%= $line->() %></td>
+        <td><%= $line->() %></td>
+        <td><%= $line->() %></td>
+        <td><%= $line->() %></td>
+        <td><%= $line->() %></td>
+        <td><%= $line->() %></td>
+	</tr>
+	<tr>
+        <td><%= $line->() %></td>
+        <td><%= $line->() %></td>
+        <td><%= $line->() %></td>
+        <td><%= $line->() %></td>
+        <td><%= $line->() %></td>
+        <td><%= $line->() %></td>
+        <td><%= $line->() %></td>
+	</tr>
+</table>
+</body>
+</html>
