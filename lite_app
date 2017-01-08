@@ -18,6 +18,6 @@ get '/:img' => [img => [qw/even odd/], format => [qw/png/]] => {format => 'png'}
   );
 };
 
-get '/:date' => {date => ''} => sub { my $self = shift; $self->render('poopy', date => $self->param('date'), weeks => $self->param('weeks')||6, meds => $self->param('meds')||'15') } => 'poopy';
+get '/' => sub { my $self = shift; $self->render('poopy', date => $self->param('date'), weeks => $self->param('weeks')||6, meds => $self->param('meds')||'15') } => 'poopy';
 
 app->start;

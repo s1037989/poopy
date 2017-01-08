@@ -1,7 +1,7 @@
 % $date = Date::Simple->new($date) || Date::Simple::today();
 % my @birthdays = map { Date::Simple->new($_) } '2007-01-11', '2014-05-01';
-% my $prev = $date-42;
-% my $next = $date+42;
+% my $prev = $date-$weeks*7;
+% my $next = $date+$weeks*7;
 % my @meds = split /,/, $meds;
 % $date-- while $date->day_of_week > 0;
 % my $first = $date;
@@ -28,10 +28,8 @@
         <td style="vertical-align:middle"><%= image '/IMG_2405.JPG', width => 100 %></td>
         <td style="vertical-align:middle;text-align:center;width:725px">
           <span class="title">FEEDING POOPY!</span>
-<%= "Ref: ".ref $date->format('%Y-%m-%d') %>
           %= form_for 'poopy' => begin
-          %= date_field end => '2012-12-21'
-          %#= date_field date => $date->format('%Y-%m-%d')->as_str
+          %= date_field date => $date->format('%Y-%m-%d')
           %= number_field weeks => 6, min => 1, max => 52
           %= submit_button 'Go!'
           %  end
@@ -58,8 +56,8 @@
       </tr>
       % }
     </table>
-    %= link_to Prev => url_with('poopy', {date => $prev})
-    %= link_to Next => url_with('poopy', {date => $next})
+    %= link_to Prev => url_with->query([date => $prev])
+    %= link_to Next => url_with->query([date => $next])
   </body>
 </html>
 
