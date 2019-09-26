@@ -1,5 +1,5 @@
 % $date = Date::Simple->new($date) || Date::Simple::today();
-% my @birthdays = map { Date::Simple->new($_) } '2007-01-11', '2014-05-01';
+% my @birthdays = map { Date::Simple->new($_) } '2007-01-11', '2015-05-01';
 % my $prev = $date-$weeks*7;
 % my $next = $date+$weeks*7;
 % my @meds = split /,/, $meds;
